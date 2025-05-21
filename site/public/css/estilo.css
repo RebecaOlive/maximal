@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: black;
+  background-color: var(--r1);
 }
 
 :root {
@@ -13,6 +13,18 @@ body {
   --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
   --tamanho-footer: 65px;
+  --r1: #FDFBFF;
+  --r2: #F4EAFA;
+  --r3: #E4CCF2;
+  --r4: #D1B2E9;
+  --r5: #A882C9;
+  --r6: #7D5FA1;
+  --r7: #645094;
+  --r8: #4D3780;
+  --r9: #2F1F66;
+  --r10: #1E0E59;
+  --r11: #120738;
+  --r12: #080120;
 }
 
 .container {
@@ -23,7 +35,11 @@ body {
 
 .header {
   height: var(--tamanho-header);
-  border-bottom: 2px solid #32b9cd;
+  background-color: var(--r10);
+}
+
+.header a img {
+  width: 160px;
 }
 
 .header .container {
@@ -34,7 +50,7 @@ body {
 
 .header a {
   text-decoration: none;
-  color: #e3b062;
+  color: var(--r2);
 }
 
 .agora {
@@ -65,14 +81,13 @@ body {
 .banner {
   height: var(--tamanho-banner);
   color: white;
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
+  background-color: var(--r1);
 }
 
 .banner .container {
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: fit-content;
 }
 
 .banner .container p {
@@ -118,14 +133,178 @@ body {
   align-items: center;
 }
 
+/*PÁGINA DE PUBLICAÇÕES*/
+.div-conteudo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-column-start: 1;
+  grid-column-end: 12;
+  flex-direction: column;
+}
+
+.centro-conteudo {
+  grid-column: 5 / 11;
+}
+
+/*menu-lateral*/
+
+.menu-lateral {
+  grid-column: 3;
+  grid-column-start: 1;
+  background-color: var(--r2);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  z-index: 2;
+}
+
+.menu-lateral img {
+  width: 200px;
+  padding: 10px 0;
+}
+
+#underline {
+  border-bottom: var(--r6) 2px solid;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.itens-menu {
+  padding: 40px 0;
+}
+
+.itens-menu li {
+  text-decoration: none;
+  list-style: none;
+  color: var(--r6);
+  padding: 40px;
+  font-size: larger;
+  font-weight: 600;
+  align-items: center;
+}
+
+.itens-menu li a {
+  text-decoration: none;
+  list-style: none;
+  color: var(--r6);
+}
+
+/*fim menu-lateral*/
+
+/*inicio criar-publicacao*/
+
+.criar-publicacao {
+  height: 240px;
+  background-color: var(--r2);
+  margin: 10px auto;
+  border-radius: 10px;
+  padding: 10px 40px;
+  border: 1px solid var(--r3);
+  color: var(--r12);
+  width: 100%;
+}
+
+.criar-publicacao input {
+  border: 1px solid var(--r3);
+  background-color: var(--r1);
+  display: block;
+  width: 95%;
+  height: 40px;
+}
+
+.criar-publicacao span {
+  color: var(--r6);
+  font-size: small;
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: -200px;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.btn-categoria {
+  margin-right: 4px;
+  padding: 4px 15px;
+  border-radius: 4px;
+  border: 1px solid;
+  font-weight: 600;
+}
+
+#btn-publicar {
+  padding: 20px 30px;
+  border: 1px solid var(--r9);
+  font-size: larger;
+  font-weight: 600;
+  border-radius: 10px;
+  color: var(--r1);
+  background-color: var(--r9);
+  margin-left: auto;
+}
+
+#btn-ajuda {
+  border-color: #8E8137;
+  background-color: #CABE7C;
+}
+
+#btn-doacao {
+  border-color: #A63171;
+  background-color: #CA7BA6;
+}
+
+#btn-adocao {
+  border-color: #265791;
+  background-color: #84ADDD;
+}
+
+#btn-aleatorio {
+  border-color: #528238;
+  background-color: #A3D08A;
+}
+
+/*fim criar-publicacao*/
+
+/*inicio publicacao*/
+.publicacao {
+  display: block;
+  background-color: var(--r2);
+  border: 2px var(--r3);
+  border-radius: 10px;
+}
+
+#img-perfil {
+  width: 65px;
+  height: 65px;
+  border-radius: 100px;
+}
+
+/*fim publicacao*/
+
+/*FIM DE PÁGINA DE PUBLICAÇÕES*/
 /* FOOTER */
 
 .footer {
-  background-color: #32b9cd;
+  background-color: var(--r10);
   height: 150px;
-  color: #fff;
+  color: var(--r6);
   display: flex;
   font-size: 15px;
+  padding-left: 200px;
+  width: 100%;
+  bottom: 0;
 }
 
 .footer .container {
@@ -141,8 +320,7 @@ body {
 
 .login {
   height: var(--tamanho-login);
-  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
-  background-size: cover;
+  background-color: var(--r1);
 }
 
 .login .container {
@@ -153,15 +331,15 @@ body {
 
 .card {
   width: 50%;
-  background-color: #e5e5e5;
+  background-color: var(--r3);
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  color: palevioletred;
+  color: var(--r8);
   flex-direction: column;
   height: fit-content;
-  padding: 20px 0;
+  padding: 25px 0;
 }
 
 .card h2 {
@@ -183,7 +361,8 @@ body {
 }
 
 .formulario input {
-  border: 2px solid #32b9cd;
+  border: none;
+  background-color: var(--r1);
   text-align: center;
   border-radius: 10px;
   margin: 0;
@@ -214,7 +393,7 @@ body {
   font-weight: 600;
   font-size: 18px;
   color: #fff;
-  background-color: #ED145B;
+  background-color: var(--r9);
   width: 120px;
   height: 30px;
   align-self: center;
@@ -237,7 +416,7 @@ body {
 
 /* FORMULARIO */
 
-.alerta_erro{
+.alerta_erro {
   display: flex;
   justify-content: flex-end;
 }
@@ -254,7 +433,7 @@ body {
   margin-right: 10%;
 }
 
-.card_erro #mensagem_erro{
+.card_erro #mensagem_erro {
   font-weight: 500;
   font-size: 20px;
 }
@@ -302,18 +481,6 @@ input {
   width: 50px;
 }
 
-/* SIMULADOR */
-
-.simulador {
-  color: white;
-}
-
-.simulador .container {
-  flex-direction: column;
-  overflow: scroll; 
-  height: var(--tamanho-simulador);
-}
-
 /* ALERTA */
 
 #alerta {
@@ -354,9 +521,23 @@ input {
 }
 
 @keyframes bell {
-  0%   {transform: rotate(25deg)}
-  25%  {transform: rotate(-25deg)}
-  50%  {transform: rotate(25deg)}
-  75%  {transform: rotate(-25deg)}
-  100% {transform: rotate(25deg)}
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
 }
