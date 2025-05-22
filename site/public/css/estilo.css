@@ -206,7 +206,7 @@ body {
 .criar-publicacao {
   height: 240px;
   background-color: var(--r2);
-  margin: 10px auto;
+  margin: 10px auto 0 auto;
   border-radius: 10px;
   padding: 10px 40px;
   border: 1px solid var(--r3);
@@ -278,10 +278,22 @@ body {
 /*fim criar-publicacao*/
 
 /*inicio publicacao*/
+.div-titulo-pb {
+  padding: 20px 0;
+}
+
+#titulo-publicacoes {
+  color: var(--r6);
+  padding: 4px 0;
+  border-bottom: 2px solid var(--r6);
+  font-weight: 600;
+  font-size: larger;
+}
+
 .publicacao {
-  display: block;
+  grid-column: 4 / 12;
   background-color: var(--r2);
-  border: 2px var(--r3);
+  border: 1px solid var(--r3);
   border-radius: 10px;
 }
 
@@ -289,6 +301,7 @@ body {
   width: 65px;
   height: 65px;
   border-radius: 100px;
+  background-color: var(--r10);
 }
 
 /*fim publicacao*/
@@ -305,6 +318,8 @@ body {
   padding-left: 200px;
   width: 100%;
   bottom: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer .container {
