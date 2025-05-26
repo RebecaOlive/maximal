@@ -8,7 +8,7 @@ CREATE TABLE usuario(
 	email VARCHAR(50),
 	senha VARCHAR(12),
     perfil VARCHAR(255),
-    fkRegiao INT,
+    fkLocalizacao INT,
     FOREIGN KEY fkLocalizacao (fkLocalizacao)
     REFERENCES localizacao (idLocalizacao)
 );
@@ -17,7 +17,7 @@ CREATE TABLE hospital (
 	idHospital INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(45),
 	descricao VARCHAR(100),
-	fkRegiao INT,
+	fkLocalizacao INT,
     FOREIGN KEY fkLocalizacao (fkLocalizacao)
     REFERENCES localizacao (idLocalizacao)
 );
