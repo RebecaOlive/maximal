@@ -164,7 +164,7 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: fixed;
+  position: sticky;
   left: 0;
   z-index: 2;
 }
