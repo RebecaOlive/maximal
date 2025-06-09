@@ -100,11 +100,8 @@
 
 <script>
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
-  // let listaEmpresasCadastradas = [];
-
   function cadastrar() {
-    // aguardar();
+    aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
@@ -112,8 +109,7 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    // var codigoVar = codigo_input.value;
-    // var idEmpresaVincular
+
 
     // Verificando se há algum campo em branco
     if (
@@ -132,7 +128,7 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
+    // // Verificando se o código de ativação é de alguma empresa cadastrada
     // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
     //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
     //     idEmpresaVincular = listaEmpresasCadastradas[i].id

@@ -279,14 +279,23 @@ body {
 /*fim criar-publicacao*/
 
 /*inicio publicacao*/
-.div-titulo-pb {
-  padding: 20px 0;
+.div-titulo {
+  padding: 10px 0;
+  color: var(--r8);
+}
+
+h2 {
+  border-bottom: 4px solid var(--r8);
+  width: fit-content;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--r8);
+  padding: 10px 0;
 }
 
 #titulo-publicacoes {
-  color: var(--r6);
+  border-bottom: 2px solid var(--r8);
   padding: 4px 0;
-  border-bottom: 2px solid var(--r6);
   font-weight: 600;
   font-size: larger;
 }
@@ -314,6 +323,124 @@ body {
 /*fim publicacao*/
 
 /*FIM DE PÁGINA DE PUBLICAÇÕES*/
+/* Inicio página sobre-nós */
+.img-extensao {
+  width: 100%;
+}
+
+.div-conteudo {
+  padding: 40px 0;
+}
+
+.div-conteudo .maximal {
+  grid-column: 4 / 11;
+  margin: 30px;
+}
+
+#max-filhote {
+  padding: 20px;
+  background-color: var(--r6);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  margin: 60px 0;
+}
+
+#max-filhote img {
+  width: 335px;
+  height: 255px;
+}
+
+.maximal span {
+  color: var(--r12);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 35px;
+}
+
+hr {
+  height: 8px;
+  background-color: var(--r6);
+  margin: 0;
+}
+
+.fundo-roxo {
+  background-color: var(--r3);
+  padding: 30px 0;
+
+}
+
+.maximal-transforma {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.img-apoios {
+  width: 250px;
+  height: 100%;
+}
+
+.p-apoios {
+  font-size: 26px;
+  color: var(--r8);
+  margin: 0;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.espacamento {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 80px 0;
+}
+
+#ods-onu-titulo {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.textos span,
+.textos span p {
+  padding: 10px;
+  font-size: 30px;
+  font-weight: 500;
+  text-align: center;
+  align-self: center;
+  margin: 0 auto;
+}
+
+#banguela-e-eu {
+  width: 368px;
+  height: max-content;
+  order: 1;
+}
+
+#max-e-eu {
+  order: 3;
+}
+
+#familia {
+  order: 2;
+  border-radius: 20px;
+  border: 20px solid var(--r6);
+}
+
+#button-increver-se {
+  padding: 15px 120px;
+  font-weight: 500;
+  font-size: 50px;
+  background-color: var(--r9);
+  border-radius: 10px;
+  margin: 60px 0;
+}
+
+.maximal-transforma a {
+  text-decoration: none;
+  color: var(--r1);
+}
+
+/* Final da página sobre-nós */
 /* FOOTER */
 
 .footer {
