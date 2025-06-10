@@ -28,11 +28,11 @@
           <a href="sobre-nos.html">Sobre nós</a>
         </li>
         <li>
-          <a href="#">Login</a>
+          <span id="usuario_foto"></span>
         </li>
         <li>|</li>
         <li>
-          <a href="cadastro.html">Cadastro</a>
+          Olá, <span id="b_usuario"></span>
         </li>
       </ul>
     </div>
@@ -107,3 +107,7 @@
 </body>
 
 </html>
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+</script>

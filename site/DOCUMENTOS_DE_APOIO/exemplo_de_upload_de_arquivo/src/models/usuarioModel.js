@@ -6,8 +6,8 @@ function salvar(usuario) {
   return database.executar(instrucao);
 }
 
-function buscarUsuarioPeloId(id) {
-  const instrucao = `select * from usuario where id = ${id}`;
+function buscarUsuarioPeloId(idUsuario) {
+  const instrucao = `select * from usuario where idUsuario = ${idUsuario}`;
 
   return database.executar(instrucao);
 }

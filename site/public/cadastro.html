@@ -68,6 +68,39 @@
             <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
           </div>
           <div class="campo">
+            <span>Estado:</span>
+            <select id="select_estado">
+              <option value="">Selecione o Estado</option>
+              <option value="41">Acre</option>
+              <option value="42">Alagoas</option>
+              <option value="43">Amapá</option>
+              <option value="44">Amazonas</option>
+              <option value="45">Bahia</option>
+              <option value="46">Ceará</option>
+              <option value="47">Distrito Federal</option>
+              <option value="48">Espirito Santo</option>
+              <option value="49">Goiás</option>
+              <option value="50">Maranhão</option>
+              <option value="51">Mato Grosso</option>
+              <option value="52">Mato Grosso do Sul</option>
+              <option value="53">Minas Gerais</option>
+              <option value="54">Pará</option>
+              <option value="55">Paraíba</option>
+              <option value="56">Paraná</option>
+              <option value="57">Pernambuco</option>
+              <option value="58">Piauí</option>
+              <option value="59">Rio de Janeiro</option>
+              <option value="60">Rio Grande do Norte</option>
+              <option value="61">Rio Grande do Sul</option>
+              <option value="62">Rondônia</option>
+              <option value="63">Roraima</option>
+              <option value="64">Santa Catarina</option>
+              <option value="65">São Paulo</option>
+              <option value="66">Sergipe</option>
+              <option value="67">Tocantins</option>
+            </select>
+          </div>
+          <div class="campo">
             <span>Senha:</span>
             <input id="senha_input" type="password" placeholder="******" />
           </div>
@@ -107,6 +140,7 @@
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
+    var estadoVar = select_estado.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
@@ -115,6 +149,7 @@
     if (
       nomeVar == "" ||
       emailVar == "" ||
+      estadoVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == ""
     ) {
@@ -128,19 +163,6 @@
       setInterval(sumirMensagem, 5000);
     }
 
-    // // Verificando se o código de ativação é de alguma empresa cadastrada
-    // for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-    //   if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-    //     idEmpresaVincular = listaEmpresasCadastradas[i].id
-    //     console.log("Código de ativação válido.");
-    //     break;
-    //   } else {
-    //     cardErro.style.display = "block";
-    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-    //     finalizarAguardar();
-    //   }
-    // }
-
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -152,8 +174,8 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         emailServer: emailVar,
-        senhaServer: senhaVar,
-        // idEmpresaVincularServer: idEmpresaVincular
+        estadoServer: estadoVar,
+        senhaServer: senhaVar
       }),
     })
       .then(function (resposta) {
@@ -182,26 +204,6 @@
 
     return false;
   }
-
-  // Listando empresas cadastradas 
-  // function listar() {
-  //   fetch("/empresas/listar", {
-  //     method: "GET",
-  //   })
-  //     .then(function (resposta) {
-  //       resposta.json().then((empresas) => {
-  //         empresas.forEach((empresa) => {
-  //           listaEmpresasCadastradas.push(empresa);
-
-  //           console.log("listaEmpresasCadastradas")
-  //           console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-  //         });
-  //       });
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-  // }
 
   function sumirMensagem() {
     cardErro.style.display = "none";

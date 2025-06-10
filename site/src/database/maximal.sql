@@ -1,4 +1,5 @@
 CREATE DATABASE maximal;
+-- DROP DATABASE maximal;
 
 USE maximal;
 
@@ -8,7 +9,7 @@ CREATE TABLE usuario(
 	email VARCHAR(50) NOT NULL UNIQUE,
 	senha VARCHAR(12) NOT NULL,
     perfilImagem VARCHAR(255),
-    fkLocalizacao INT,
+    fkLocalizacao INT NOT NULL,
     FOREIGN KEY fkLocalizacao (fkLocalizacao)
     REFERENCES localizacao (idLocalizacao)
 );
@@ -24,18 +25,18 @@ CREATE TABLE hospital (
 
 SHOW TABLES; 
 
-drop table hospital;
-drop table localizacao;
-drop table classificacao;
-drop table publicacao;
-drop table comentario;
-drop table usuario;
-drop table servicoHospitalar;
+DROP TABLE hospital;
+DROP TABLE localizacao;
+DROP TABLE classificacao;
+DROP TABLE publicacao;
+DROP TABLE comentario;
+DROP TABLE usuario;
+DROP TABLE servicoHospitalar;
 DROP TABLE servico;
 
 CREATE TABLE localizacao (
 	idLocalizacao INT PRIMARY KEY AUTO_INCREMENT,
-	cidade VARCHAR(45) NOT NULL,
+	cidade VARCHAR(45),
 	estado VARCHAR(45) NOT NULL,
     regiao VARCHAR(45) NOT NULL
 );
@@ -131,6 +132,37 @@ INSERT INTO localizacao (cidade, estado, regiao) VALUES
 	('Canoas', 'Rio Grande do Sul', 'Sul'),
     ('Porto Alegre', 'Rio Grande do Sul', 'Sul'),
 	('Santa Maria', 'Rio Grande do Sul', 'Sul');
+    
+INSERT INTO localizacao (cidade, estado, regiao) VALUES
+  (NULL, 'Acre', 'Norte'),
+  (NULL, 'Alagoas', 'Nordeste'),
+  (NULL, 'Amapá', 'Norte'),
+  (NULL, 'Amazonas', 'Norte'),
+  (NULL, 'Bahia', 'Nordeste'),
+  (NULL, 'Ceará', 'Nordeste'),
+  (NULL, 'Distrito Federal', 'Centro-Oeste'),
+  (NULL, 'Espírito Santo', 'Sudeste'),
+  (NULL, 'Goiás', 'Centro-Oeste'),
+  (NULL, 'Maranhão', 'Nordeste'),
+  (NULL, 'Mato Grosso', 'Centro-Oeste'),
+  (NULL, 'Mato Grosso do Sul', 'Centro-Oeste'),
+  (NULL, 'Minas Gerais', 'Sudeste'),
+  (NULL, 'Pará', 'Norte'),
+  (NULL, 'Paraíba', 'Nordeste'),
+  (NULL, 'Paraná', 'Sul'),
+  (NULL, 'Pernambuco', 'Nordeste'),
+  (NULL, 'Piauí', 'Nordeste'),
+  (NULL, 'Rio de Janeiro', 'Sudeste'),
+  (NULL, 'Rio Grande do Norte', 'Nordeste'),
+  (NULL, 'Rio Grande do Sul', 'Sul'),
+  (NULL, 'Rondônia', 'Norte'),
+  (NULL, 'Roraima', 'Norte'),
+  (NULL, 'Santa Catarina', 'Sul'),
+  (NULL, 'São Paulo', 'Sudeste'),
+  (NULL, 'Sergipe', 'Nordeste'),
+  (NULL, 'Tocantins', 'Norte');
+  
+  SELECT * FROM localizacao;
     
 INSERT INTO hospital (nome, endereco, fkLocalizacao) VALUES 
 	('Hospital Veterinário Público de Macapá','Ramal do Alemão – Fazendinha', 1),
@@ -705,7 +737,5 @@ INSERT INTO servicoHospitalar (fkHospital, fkServico) VALUES
 	(48, 49),
 	(48, 50),
 	(48, 40);
-
-
 
 SELECT * FROM usuario;

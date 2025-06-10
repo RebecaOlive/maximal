@@ -28,7 +28,7 @@ function finalizarAguardar(texto) {
     divAguardar.style.display = "none";
 
     var divErrosLogin = document.getElementById("div_erros_login");
-    if (texto) {
+    if (texto) {not
         divErrosLogin.style.display = "flex";
         divErrosLogin.innerHTML = texto;
     }

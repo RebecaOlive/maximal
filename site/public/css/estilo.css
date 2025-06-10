@@ -441,6 +441,13 @@ hr {
 }
 
 /* Final da página sobre-nós */
+/*INÍCIO DASHBOARD */
+#dashboard-central {
+  grid-column: 3/12;
+}
+
+/*FINAL DASHBOARD */
+
 /* FOOTER */
 
 .footer {
@@ -449,7 +456,6 @@ hr {
   color: var(--r6);
   display: flex;
   font-size: 15px;
-  padding-left: 200px;
   width: 100%;
   bottom: 0;
   align-items: center;
