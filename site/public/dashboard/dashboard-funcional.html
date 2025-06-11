@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maximal | Central de ajuda</title>
+  <!-- Incluindo a biblioteca Chart.js para desenhar gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="../../public/css/estilo.css">
+</head>
+
+<body onload="obterDados()"><!-- Chamando a função obterDados ao carregar a página -->
+  <div class="header">
+    <div class="container">
+      <a><img src="../../public/assets/imgs/logotipo-light.svg" alt="">
+      </a>
+      <ul class="navbar">
+        <li class="agora">
+          <a href="index.html">Inicial</a>
+        </li>
+        <li>
+          <span id="usuario_foto">Sair</span>
+        </li>
+        <li>|</li>
+        <li>
+          Olá, <span id="b_usuario"></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="div-conteudo">
+    <div class="menu-lateral">
+      <ul class="itens-menu">
+        <li>
+          <a href="index.html">Publicações</a>
+        </li>
+        <li>
+          <a href="central-ajuda.html">Central de ajuda</a>
+        </li>
+        <li>
+          <a href="sobre-nos.html">Sobre nós</a>
+        </li>
+        <li id="underline">
+        </li>
+        <li>
+          <img src="../assets/imgs/maximal-logo-dark.svg" alt="logo maximal em modo escuro, tom roxeado. logo se trata de um M cartoonizado em estilo de traços de um rosto felino">
+        </li>
+      </ul>
+    </div>
+
+    <!-- Título para o gráfico de linhas -->
+    <div class="centro-conteudo">
+      <div id="central-ajuda-titulo">
+        <h2>Central de Ajuda</h2>
+
+      </div>
+      <div id="dashboard-central">
+        <!-- Elemento canvas onde o gráfico de linha será desenhado -->
+        <canvas id="barra"></canvas>
+        <div id="separacao-graficos"></div>
+        <!-- Elemento canvas onde o gráfico de barra será desenhado -->
+        <canvas id="pizza"></canvas>
+
+      </div>
+      <div id="kpis">
+        <div class="kpi-card">
+          <h4>% Usuários na sua Região:</h4>
+          <span id="kpi-usuario-por-regiao"></span>
+        </div>
+        <div class="kpi-card">
+          <h4>Hospitais Veterinários no seu estado:</h4>
+          <span id="kpi-hospitais-no-estado"></span>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+  </div>
+  <div class="footer">
+    <div class="container">
+      <h4>Feito com &hearts; de Rebeca Oliveira para Max &copy;</h4>
+      <span class="version">v1.0.0</span>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+
+  // Função chamada ao carregar a página para obter e processar os dados
+  function obterDados() {
+    // Aqui seria a função que obteria os dados do banco de dados
+    // No caso, aqui você colocaria o fetch que teria o endereço da sua rota que você criou na pasta /routes e chamaria a função plotarGraficoBarra nessa função. Exemplo:
+
+    // fetch('/obterDados')
+    // .then(function(response){
+    //   return response.json();
+    // })
+    // .then(function(data){
+    //   plotarGraficoBarra(data);
+    //   plotarGraficoPizza(data);
+    // })
+    // .catch(function(err){
+    //   console.log(err);
+    // })
+
+    fetch('/dashboard/usuarios-por-estado')
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (respostaEstado) {
+            console.log("Dados recebidos de usuários por estados: ", respostaEstado);
+            plotarGraficoBarra(respostaEstado);
+
+            fetch('/dashboard/usuarios-por-regiao')
+              .then(function (response2) {
+                if (response2.ok) {
+                  response2.json().then(function (respostaRegiao) {
+                    console.log("Dados recebido de usuários por região: ", respostaRegiao);
+                    plotarGraficoPizza(respostaRegiao.usuariosPorRegiao, respostaRegiao.totalGeralUsuarios);
+                  });
+                } else {
+                  console.error(
+                    "Erro ao obter os dados de Região por usuário. Status: ".response2.status);
+
+                }
+
+              })
+              .catch(function (error2) {
+                console.error("Erro ao obter dados gerais");
+
+              });
+
+          });
+
+        } else {
+          console.error("Erro na obtenção de dados de usuários por estado. Status:", response.status)
+
+        }
+
+      })
+      .catch(function (error) {
+        console.error("erro na obtenção de dados de usuários por estado");
+
+      });
+
+    obterDadosKpis();
+  }
+
+  function plotarGraficoBarra(dadosEstado) {
+    let labelsEstados = [];
+    let dadosContagemUsuario = [];
+
+    for (let i = 0; i < dadosEstado.length; i++) {
+      labelsEstados.push(dadosEstado[i].estado);
+      dadosContagemUsuario.push(dadosEstado[i].total_usuarios);
+
+    }
+
+    const graficoBarra = document.getElementById('barra').getContext('2d');
+    s
+    new Chart(graficoBarra, {
+      type: 'bar',
+      data: {
+        labels: labelsEstados,
+        datasets: [{
+          label: 'Usuários Maximal',
+          data: dadosContagemUsuario,
+          backgroundColor: 'rgba(220, 42, 10, 0.6)',
+          borderColor: 'rgba(220, 42, 10, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Total de Usuários por Estado'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Total de Usuários'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Estado'
+            }
+          }
+        }
+      }
+    });
+  }
+
+  // grafico de pizza
+
+  function plotarGraficoPizza(dadosRegiao, totalGeralUsuarios) {
+    let labelsRegioes = [];
+    let dadosPorcentagemRegiao = [];
+
+    let coresGrafico = [
+      'rgba(255, 99, 132, 0.6)',
+      'rgba(54, 162, 235, 0.6)',
+      'rgba(255, 206, 86, 0.7)',
+      'rgba(75, 192, 192, 0.3)',
+      'rgba(153, 102, 255, 0.6)',
+      'rgba(255, 159, 64, 0.6)'
+    ]
+
+    let coresBordas = [
+      'rgba(255, 99, 132, 0.9)',
+      'rgba(54, 162, 235, 0.9)',
+      'rgba(255, 206, 86, 0.9)',
+      'rgba(75, 192, 192, 0.9)',
+      'rgba(153, 102, 255, 0.9)',
+      'rgba(255, 159, 64, 0.9)'
+    ]
+
+    dadosRegiao.forEach((item, index) => {
+      labelsRegioes.push(item.nome_regiao);
+      let porcentagem = (item.total_usuarios_regiao / totalGeralUsuarios) * 100;
+      dadosPorcentagemRegiao.push(parseFloat(porcentagem.toFixed(2)));
+    });
+
+    const graficoPizza = document.getElementById('pizza').getContext('2d');
+
+    new Chart(graficoPizza, {
+      type: 'pie',
+      data: {
+        labels: labelsRegioes,
+        datasets: [{
+          label: 'Porcentagem de Usuários',
+          data: dadosPorcentagemRegiao,
+          backgroundColor: coresGrafico.slice(0, labelsRegioes.length),
+          borderColor: coresBordas.slice(0, labelsRegioes.length),
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display: true,
+            text: 'Porcentagem de Usuários por Região'
+          }
+        }
+      }
+    });
+  }
+
+  function obterDadosKpis() {
+    const idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/dashboard/kpis-usuario/${idUsuario}`, { cache: 'no-store' })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log("Dados de KPIs recebidos:", resposta);
+            exibirKpis(resposta);
+          });
+        } else {
+          console.error('Erro ao obter dados de KPIs. Status:', response.status);
+
+        }
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados de KPIs: ${error.message}`);
+
+      });
+  }
+
+  function exibirKpis(dadosKpis) {
+    document.getElementById('kpi-usuario-por-regiao').innerHTML = `${dadosKpis.porcentagemRegiao}%`;
+    document.getElementById('kpi-hospitais-no-estado').innerHTML = dadosKpis.totalHospitaisNoEstado;
+  }
+
+</script>

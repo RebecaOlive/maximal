@@ -56,10 +56,6 @@
                      -->
 
           <div class="campo">
-            <span>Insira sua foto de perfil:</span>
-            <button>Adicionar foto</button>
-          </div>
-          <div class="campo">
             <span>Nome:</span>
             <input id="nome_input" type="text" placeholder="Seu nome" />
           </div>
@@ -159,7 +155,35 @@
 
       finalizarAguardar();
       return false;
-    } else {
+
+    } else if (emailVar.indexOf("@") = -1) {
+
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(E-mail com formatação incorreta)";
+
+      finalizarAguardar();
+      return false;
+
+    } else if (emailVar.indexOf(".com") = -1) {
+
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(E-mail com formatação incorreta)";
+
+      finalizarAguardar();
+      return false;
+
+    } else if (senhaVar !== confirmacaoSenhaVar) {
+
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Senhas não correspondem)";
+
+      finalizarAguardar();
+      return false;
+    }
+    else {
       setInterval(sumirMensagem, 5000);
     }
 

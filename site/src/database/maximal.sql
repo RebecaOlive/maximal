@@ -6,9 +6,8 @@ USE maximal;
 CREATE TABLE usuario(
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 	nome VARCHAR(50) NOT NULL,
-	email VARCHAR(50) NOT NULL UNIQUE,
+	email VARCHAR(255) NOT NULL UNIQUE,
 	senha VARCHAR(12) NOT NULL,
-    perfilImagem VARCHAR(255),
     fkLocalizacao INT NOT NULL,
     FOREIGN KEY fkLocalizacao (fkLocalizacao)
     REFERENCES localizacao (idLocalizacao)
@@ -28,7 +27,6 @@ SHOW TABLES;
 DROP TABLE hospital;
 DROP TABLE localizacao;
 DROP TABLE classificacao;
-DROP TABLE publicacao;
 DROP TABLE comentario;
 DROP TABLE usuario;
 DROP TABLE servicoHospitalar;
@@ -38,7 +36,7 @@ CREATE TABLE localizacao (
 	idLocalizacao INT PRIMARY KEY AUTO_INCREMENT,
 	cidade VARCHAR(45),
 	estado VARCHAR(45) NOT NULL,
-    regiao VARCHAR(45) NOT NULL
+  regiao VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE classificacao (
@@ -46,36 +44,6 @@ CREATE TABLE classificacao (
   tipo VARCHAR(10) NOT NULL,
   CONSTRAINT chk_tipo 
 	CHECK (tipo IN ('ajuda', 'adocao', 'doacao', 'aleatorio'))
-);
-
-CREATE TABLE publicacao (
-	idPublicacao INT PRIMARY KEY AUTO_INCREMENT,
-	descricao TEXT,
-	imagem VARCHAR(255),
-	dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,    
-    fkUsuario INT,
-    fkClassificacao INT,
-    FOREIGN KEY fkClassificacao(fkClassificacao)
-    REFERENCES classificacao (idClassificacao),
-    FOREIGN KEY fkUsuario(fkUsuario)
-    REFERENCES usuario (idUsuario)
-);
-
-
-CREATE TABLE comentario (
-	idComentario INT,
-    texto VARCHAR(120) NOT NULL,
-    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
-    fkPublicacao INT,
-    fkSecundario INT,
-    fkUsuario INT,
-    FOREIGN KEY fkPublicacao(fkPublicacao)
-    REFERENCES publicacao (idPublicacao),
-	FOREIGN KEY fkUsuario(fkUsuario)
-    REFERENCES usuario (idUsuario),
-	FOREIGN KEY fkSecundario(fkSecundario)
-    REFERENCES comentario (idComentario),
-    PRIMARY KEY pkComposta (idComentario, fkUsuario, fkPublicacao)
 );
 
 CREATE TABLE servico (
